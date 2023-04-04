@@ -7,9 +7,9 @@ public class Category {
 
     private int questionsCount;
 
-    public Category(String name, int questionsCount) {
+    public Category(String name) {
         this.name = name;
-        this.questionsCount = questionsCount;
+        this.questionsCount = 0;
     }
 
     public String getName() {
