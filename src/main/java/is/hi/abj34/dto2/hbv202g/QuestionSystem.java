@@ -8,7 +8,7 @@ public class QuestionSystem {
     private List<Question> questions;
 
     public QuestionSystem() {
-        this.categories = new ArrayList<>();
+        //this.categories = new ArrayList<>();
     }
 
 

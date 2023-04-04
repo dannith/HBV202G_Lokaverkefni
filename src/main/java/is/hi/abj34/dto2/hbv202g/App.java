@@ -17,7 +17,6 @@ public class App
         System.out.println("1. Create Questions or Categories");
         System.out.println("2. Take Quiz");
         int choice = input.nextInt();
-
         switch (choice) {
             case 1:
                 createMenu();
@@ -27,7 +26,7 @@ public class App
                 break;
             default:
                 System.out.println("Invalid choice");
-        }
+            }
     }
 
     private static void answerQuestions() {
@@ -45,7 +44,7 @@ public class App
 
         switch (choice) {
             case 1:
-                CreateCategory.setup();
+                CreateCategory.view();
                 break;
             case 2:
                 CreateQuestion.setup();
