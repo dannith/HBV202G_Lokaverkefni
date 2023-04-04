@@ -4,20 +4,16 @@ import java.util.List;
 
 public class Category {
     private String name;
-
     private int questionsCount;
 
-    public Category(String name, int questionsCount) {
+    public Category(String name) throws EmptyStringException {
+        if(name == null || name.trim() == "") throw new EmptyStringException("Category name can't be empty");
         this.name = name;
-        this.questionsCount = questionsCount;
+        this.questionsCount = 0;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getQuestionsCount() {
@@ -25,6 +21,7 @@ public class Category {
     }
 
     // Update questionCount
-
-    // Raise questionCount
+    public void updateQuestionCount(){
+        this.questionsCount++;
+    }
 }
