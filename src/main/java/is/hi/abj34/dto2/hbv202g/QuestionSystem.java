@@ -5,13 +5,16 @@ import java.util.List;
 
 public class QuestionSystem {
     private List<Category> categories;
+    private List<Question> questions;
 
     public QuestionSystem() {
         this.categories = new ArrayList<>();
     }
 
-    // Add Category - while loop um hvað þú vilt velja
 
+    /// Input/Output methods 
+    // Add Category - while loop um hvað þú vilt velja
+    
     // Add Question and options
 
     // Choose category and how many questions to answer - sér java file - Filtering.java
