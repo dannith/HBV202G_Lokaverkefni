@@ -7,9 +7,6 @@ public class CreateCategory {
 
     static ArrayList<String> categories = new ArrayList<String>();
 
-    public static void setup() {
-    }
-
     public static void view() {
         System.out.println("##############################");
         System.out.println("Categories: ");

@@ -22,14 +22,13 @@ public class App
                 createMenu();
                 break;
             case 2:
+                // Go to CreateQuestionaire.java
                 CreateQuestionaire.setup();
                 break;
             default:
                 System.out.println("Invalid choice");
+                mainMenu();
             }
-    }
-
-    private static void answerQuestions() {
     }
 
     private static void createMenu() {
@@ -44,16 +43,19 @@ public class App
 
         switch (choice) {
             case 1:
+                // Go to CreateCategory.java
                 CreateCategory.view();
                 break;
             case 2:
-                CreateQuestion.setup();
+                // Go to CreateQuestion.java
+                CreateQuestion.view();
                 break;
             case 3:
                 mainMenu();
                 break;
             default:
                 System.out.println("Invalid choice");
+                createMenu();
         }
     }
 }
