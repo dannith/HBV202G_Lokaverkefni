@@ -10,6 +10,10 @@ public class Category {
         this.questionsCount = 0;
     }
 
+    public String toString(){
+        return this.name + " questions: " + this.questionsCount;
+    }
+
     public String getName() {
         return name;
     }

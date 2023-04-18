@@ -1,39 +1,53 @@
 package is.hi.abj34.dto2.hbv202g;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class CreateCategory {
-
-    static ArrayList<String> categories = new ArrayList<String>();
 
     public static void view() {
         System.out.println("##############################");
         System.out.println("Categories: ");
         String line = "";
+        List<Category> categories = QuestionSystem.getCategories();
         for(int i = 0; i < categories.size(); i++){
-            if(line.length() + categories.get(i).length() < 32) line += categories.get(i)+", ";
+            if(line.length() + categories.get(i).getName().length() < 32) line += categories.get(i).getName()+", ";
             else{
                 System.out.println(line);
-                line = "";
+                line = categories.get(i).getName();
             }
         }
         if(line.length() > 0) System.out.println(line);
         System.out.println("1. New Category");
         System.out.println("2. Back to main menu");
 
-        Scanner input = new Scanner(System.in).useDelimiter("\n");
-        int choice = input.nextInt();
+        Scanner scanner = new Scanner(System.in).useDelimiter("\n");
+        String choice = scanner.next().trim();
         switch (choice){
-            case 1:
-                System.out.print("Name of new category: ");
-                String newCategory = input.next();
-                if(!categories.contains(newCategory)) categories.add(newCategory);
-                view();
+            case "1":
+                newCategoryView(scanner);
                 break;
-            case 2:
+            case "2":
                 App.mainMenu();
                 break;
+            default:
+                view();
+                break;
         }
+    }
+
+    private static void newCategoryView(Scanner s){
+        System.out.print("Name of new category: ");
+        Category newCategory = null;
+        boolean valid = true;
+        try{
+            newCategory = new Category(s.next());
+        } catch (EmptyStringException e) {
+            valid = false;
+        }
+        if(valid) QuestionSystem.addCategory(newCategory);
+        view();
     }
 }

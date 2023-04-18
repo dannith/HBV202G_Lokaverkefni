@@ -1,5 +1,7 @@
 package is.hi.abj34.dto2.hbv202g;
 
+import java.lang.reflect.Array;
+import java.util.List;
 import java.util.Map;
 
 public class Question {
@@ -15,6 +17,7 @@ public class Question {
         this.options = options;
         if(categories.isEmpty()) throw new EmptyCategoryListException("Question needs to have categories");
         this.categories = categories;
+        QuestionSystem.updateQuestionCount(categories);
     }
 
     public String getTitle() {

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionSystem {
-    private static ArrayList<Category> categories;
-    private static ArrayList<Question> questions;
+    private static ArrayList<Category> categories = new ArrayList<>();
+    private static ArrayList<Question> questions = new ArrayList<>();
 
     public QuestionSystem() {
         //this.categories = new ArrayList<>();
@@ -15,13 +15,28 @@ public class QuestionSystem {
     /// Input/Output methods 
     // Add Category - while loop um hvað þú vilt velja
     public static void addCategory(Category category){
-        if(!categories.contains(category)) categories.add(category);
+        boolean valid = true;
+        for(Category cat : categories){
+            if(cat.getName().equalsIgnoreCase(category.getName().toLowerCase())) valid = false;
+        }
+        if(valid) categories.add(category);
     }
 
     public static List<Category> getCategories(){
         return new ArrayList<Category>(categories);
     }
-    
+
+    public static void addQuestion(Question question) {
+        questions.add(question);
+    }
+
+    public static void updateQuestionCount(List<Category> questionCategories) {
+        for(Category category : categories)
+            for(Category questionCategory : questionCategories)
+                if(category.getName().equals(questionCategory.getName()))
+                    category.updateQuestionCount();
+    }
+
     // Add Question and options
 
     // Choose category and how many questions to answer - sér java file - Filtering.java
