@@ -5,12 +5,12 @@ import java.util.Scanner;
 
 public class CreateQuestion {
 
-    static String breaker = "##############################";
+    private static String breaker = "##############################";
 
-    static String title = "";
-    static String answer = "";
-    static ArrayList<String> wrongAnswers = new ArrayList<String>();
-    static String category = "";
+    private static String title = "";
+    private static String answer = "";
+    private static ArrayList<String> wrongAnswers = new ArrayList<String>();
+    private static String category = "";
     
 
     public static void view() {

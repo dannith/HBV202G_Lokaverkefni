@@ -1,6 +1,5 @@
 package is.hi.abj34.dto2.hbv202g;
 
-import java.util.List;
 import java.util.Map;
 
 public class Question {
@@ -8,13 +7,13 @@ public class Question {
 
     Map<String, Boolean> options;
 
-    List<Category> categories;
+    String categories;
 
-    public Question(String title, Map<String,Boolean> options, List<Category> categories) throws EmptyOptionsMapException, EmptyCategoryListException {
+    public Question(String title, Map<String,Boolean> options, String categories) throws EmptyOptionsMapException, EmptyCategoryListException {
         this.title = title;
         if(options.size() < 2) throw new EmptyOptionsMapException("Question needs to have at least two options");
         this.options = options;
-        if(categories.size() == 0) throw new EmptyCategoryListException("Question needs to have categories");
+        if(categories.isEmpty()) throw new EmptyCategoryListException("Question needs to have categories");
         this.categories = categories;
     }
 
@@ -32,5 +31,9 @@ public class Question {
 
     public void addOption(String option, Boolean value) {
         this.options.put(option, value);
+    }
+
+    public String getCategory() {
+        return categories;
     }
 }
