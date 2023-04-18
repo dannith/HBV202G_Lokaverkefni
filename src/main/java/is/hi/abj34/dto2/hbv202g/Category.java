@@ -8,8 +8,12 @@ public class Category {
 
     public Category(String name) throws EmptyStringException {
         if(name == null || name.trim() == "") throw new EmptyStringException("Category name can't be empty");
-        this.name = name;
+        this.name = name.trim();
         this.questionsCount = 0;
+    }
+
+    public String toString(){
+        return this.name + " questions: " + this.questionsCount;
     }
 
     public String getName() {

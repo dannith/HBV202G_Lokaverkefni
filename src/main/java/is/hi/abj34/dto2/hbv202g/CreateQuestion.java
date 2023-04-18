@@ -1,7 +1,7 @@
 package is.hi.abj34.dto2.hbv202g;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.awt.desktop.SystemEventListener;
+import java.util.*;
 
 public class CreateQuestion {
 
@@ -10,8 +10,7 @@ public class CreateQuestion {
     static String title = "";
     static String answer = "";
     static ArrayList<String> wrongAnswers = new ArrayList<String>();
-    static String category = "";
-    
+    static ArrayList<Category> questionCategories = new ArrayList<>();
 
     public static void view() {
         System.out.println(breaker);
@@ -19,55 +18,101 @@ public class CreateQuestion {
         System.out.println("1. Question: " + title);
         System.out.println("2. Answer: " + answer);
         System.out.println("3. Wrong answers: " + wrongAnswers);
-        System.out.println("4. Category: " + category);
-        System.out.println("5. Confirm and create question");
+        System.out.println("4. Categories: " + questionCategories);
+        if(validateQuestion()) System.out.println("5. Confirm and create question");
+        else System.out.println("5. ....: ");
         System.out.println("6. Back to main menu");
 
-        Scanner input = new Scanner(System.in);
-        int choice = input.nextInt();
+        Scanner scanner = new Scanner(System.in).useDelimiter("\n");
+        String choice = scanner.next().trim();
         switch(choice) {
-            case 1:
-                System.out.println(breaker);
-                System.out.print("Enter the question: ");
-                title = input.next();
+            case "1":
+                titleView(scanner);
                 view();
                 break;
-            case 2:
-                System.out.println(breaker);
-                System.out.print("Enter the right answer: ");
-                answer = input.next();
+            case "2":
+                answerView(scanner);
                 view();
                 break;
-            case 3:
-                String line = "temp";
-                while(!line.equals("")) {
-                    System.out.println(breaker);
-                    System.out.print("Enter a wrong answer(at least 2): " + wrongAnswers);
-                    System.out.println("Type a blank line to finish");
-                    line = input.next();
-                    if ( !line.equals("") ) {
-                        wrongAnswers.add(line);
+            case "3":
+                wrongAnswersView(scanner);
+                view();
+                break;
+            case "4":
+                categoryView(scanner);
+                view();
+                break;
+            case "5":
+                if(!validateQuestion()) System.out.println("Please fill in fields 1 - 4: ");
+                else{
+                    try{
+                        confirmQuestion();
+                    } catch (EmptyCategoryListException | EmptyOptionsMapException e) {
+                        System.out.println(e.getMessage());
                     }
                 }
                 view();
                 break;
-            case 4:
-                // TODO setja inn öll category sem eru til, til að geta valið úr
-                System.out.println(breaker);
-                System.out.print("Category: ");
-                category = input.next();
-                view();
-                break;
-            case 5:
-                // TODO bæta við inn í question
-                view();
-                break;
-            case 6:
+            case "6":
                 App.mainMenu();
                 break;
             default:
                 System.out.println("Invalid choice");
                 view();
         }
+    }
+
+    private static void confirmQuestion() throws EmptyCategoryListException, EmptyOptionsMapException {
+        Map<String, Boolean> questionChoices = new HashMap<>();
+        questionChoices.put(answer, true);
+        for(String wrong : wrongAnswers) questionChoices.put(wrong, false);
+        Question question = new Question(title, questionChoices, questionCategories);
+        QuestionSystem.addQuestion(question);
+    }
+
+    private static boolean validateQuestion() {
+        return !(title.equals("") || answer.equals("") || wrongAnswers.size() == 0 || questionCategories.size() == 0);
+    }
+
+
+    private static void titleView(Scanner s) {
+        System.out.println(breaker);
+        System.out.print("Enter the question: ");
+        while(title.equals("")) title = s.next().trim();
+    }
+    private static void answerView(Scanner s) {
+        System.out.println(breaker);
+        System.out.print("Enter the right answer: ");
+        while(answer.equals("")) answer = s.next().trim();
+    }
+    private static void wrongAnswersView(Scanner s) {
+        System.out.println(breaker);
+        System.out.print("Enter an incorrect answer: ");
+        String wrongAnswer = "";
+        while(wrongAnswer.equals("") || wrongAnswers.contains(wrongAnswer)) wrongAnswer = s.next().trim();
+        wrongAnswers.add(wrongAnswer);
+    }
+
+    private static void categoryView(Scanner s) {
+        System.out.println(breaker);
+        System.out.println("Select a category:");
+
+        List<Category> categories = QuestionSystem.getCategories();
+
+        for(int i = 0; i < categories.size(); i++){
+            System.out.println( (i + 1) + ": " + categories.get(i).getName());
+        }
+
+        int choice = 0;
+        try{
+            choice = Integer.parseInt(s.next().trim());
+        } catch (NumberFormatException e){
+            return;
+        }
+
+        if(choice < 1 || choice > categories.size()) return;
+        Category category = categories.get(choice - 1);
+        if(questionCategories.contains(category)) questionCategories.remove(category);
+        else questionCategories.add(category);
     }
 }
