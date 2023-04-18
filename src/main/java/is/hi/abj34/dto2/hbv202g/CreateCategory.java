@@ -22,7 +22,7 @@ public class CreateCategory {
         System.out.println("1. New Category");
         System.out.println("2. Back to main menu");
 
-        Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in).useDelimiter("\n");
         int choice = input.nextInt();
         switch (choice){
             case 1:

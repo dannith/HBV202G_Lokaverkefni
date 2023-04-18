@@ -23,7 +23,7 @@ public class App
                 break;
             case 2:
                 // Go to CreateQuestionaire.java
-                CreateQuestionaire.setup();
+               // CreateQuestionaire.setup();
                 break;
             default:
                 System.out.println("Invalid choice");

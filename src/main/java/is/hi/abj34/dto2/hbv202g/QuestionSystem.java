@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionSystem {
-    private List<Category> categories;
-    private List<Question> questions;
+    private static ArrayList<Category> categories;
+    private static ArrayList<Question> questions;
 
     public QuestionSystem() {
         //this.categories = new ArrayList<>();
@@ -14,6 +14,13 @@ public class QuestionSystem {
 
     /// Input/Output methods 
     // Add Category - while loop um hvað þú vilt velja
+    public static void addCategory(Category category){
+        if(!categories.contains(category)) categories.add(category);
+    }
+
+    public static List<Category> getCategories(){
+        return new ArrayList<Category>(categories);
+    }
     
     // Add Question and options
 
