@@ -47,11 +47,12 @@ public class CreateQuestion {
                 else{
                     try{
                         confirmQuestion();
+                        App.mainMenu();
                     } catch (EmptyCategoryListException | EmptyOptionsMapException e) {
                         System.out.println(e.getMessage());
+                        view();
                     }
                 }
-                view();
                 break;
             case "6":
                 App.mainMenu();
