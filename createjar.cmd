@@ -1,0 +1,1 @@
+jar cfm myjar.jar mymanifest.mf bin/
