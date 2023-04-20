@@ -51,7 +51,7 @@ public class CreateQuestion {
                         System.out.println(e.getMessage());
                     }
                 }
-                view();
+                App.createMenu();
                 break;
             case "6":
                 App.mainMenu();
