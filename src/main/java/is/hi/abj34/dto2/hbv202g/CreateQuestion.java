@@ -10,7 +10,7 @@ public class CreateQuestion {
     static String title = "";
     static String answer = "";
     static ArrayList<String> wrongAnswers = new ArrayList<String>();
-    static ArrayList<Category> questionCategories = new ArrayList<>();
+    static ArrayList<Category> questionCategories = new ArrayList<Category>();
 
     public static void view() {
         System.out.println(breaker);
