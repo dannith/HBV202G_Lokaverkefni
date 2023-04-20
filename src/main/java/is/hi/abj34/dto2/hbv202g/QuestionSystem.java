@@ -30,13 +30,6 @@ public class QuestionSystem {
         questions.add(question);
     }
 
-    public static void updateQuestionCount(List<Category> questionCategories) {
-        for(Category category : categories)
-            for(Category questionCategory : questionCategories)
-                if(category.getName().equals(questionCategory.getName()))
-                    category.updateQuestionCount();
-    }
-
     // Add Question and options
 
     // Choose category and how many questions to answer - sér java file - Filtering.java

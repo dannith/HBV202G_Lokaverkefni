@@ -10,7 +10,7 @@ public class CreateQuestion {
     static String title = "";
     static String answer = "";
     static ArrayList<String> wrongAnswers = new ArrayList<String>();
-    static ArrayList<Category> questionCategories = new ArrayList<>();
+    static Category questionCategory;
 
     public static void view() {
         System.out.println(breaker);
@@ -18,7 +18,7 @@ public class CreateQuestion {
         System.out.println("1. Question: " + title);
         System.out.println("2. Answer: " + answer);
         System.out.println("3. Wrong answers: " + wrongAnswers);
-        System.out.println("4. Categories: " + questionCategories);
+        System.out.println("4. Category: " + questionCategory);
         if(validateQuestion()) System.out.println("5. Confirm and create question");
         else System.out.println("5. ....: ");
         System.out.println("6. Back to main menu");
@@ -66,12 +66,12 @@ public class CreateQuestion {
         Map<String, Boolean> questionChoices = new HashMap<>();
         questionChoices.put(answer, true);
         for(String wrong : wrongAnswers) questionChoices.put(wrong, false);
-        Question question = new Question(title, questionChoices, questionCategories);
+        Question question = new Question(title, questionChoices, questionCategory);
         QuestionSystem.addQuestion(question);
     }
 
     private static boolean validateQuestion() {
-        return !(title.equals("") || answer.equals("") || wrongAnswers.size() == 0 || questionCategories.size() == 0);
+        return !(title.equals("") || answer.equals("") || wrongAnswers.size() == 0 || questionCategory == null);
     }
 
 
@@ -112,7 +112,6 @@ public class CreateQuestion {
 
         if(choice < 1 || choice > categories.size()) return;
         Category category = categories.get(choice - 1);
-        if(questionCategories.contains(category)) questionCategories.remove(category);
-        else questionCategories.add(category);
+        questionCategory = category;
     }
 }

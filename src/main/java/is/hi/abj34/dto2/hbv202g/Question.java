@@ -9,34 +9,26 @@ public class Question {
 
     Map<String, Boolean> options;
 
-    String categories;
+    Category category;
 
-    public Question(String title, Map<String,Boolean> options, String categories) throws EmptyOptionsMapException, EmptyCategoryListException {
+    public Question(String title, Map<String,Boolean> options, Category category) throws EmptyOptionsMapException, EmptyCategoryListException {
         this.title = title;
         if(options.size() < 2) throw new EmptyOptionsMapException("Question needs to have at least two options");
         this.options = options;
-        if(categories.isEmpty()) throw new EmptyCategoryListException("Question needs to have categories");
-        this.categories = categories;
-        QuestionSystem.updateQuestionCount(categories);
+        if(category == null) throw new EmptyCategoryListException("Question needs to be in a category");
+        this.category = category;
+        category.updateQuestionCount();
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public Map<String, Boolean> getOptions() {
         return options;
     }
 
-    public void addOption(String option, Boolean value) {
-        this.options.put(option, value);
-    }
-
-    public String getCategory() {
-        return categories;
+    public Category getCategory() {
+        return category;
     }
 }
