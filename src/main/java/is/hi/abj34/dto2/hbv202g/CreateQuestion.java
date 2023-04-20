@@ -43,10 +43,16 @@ public class CreateQuestion {
                 view();
                 break;
             case "5":
-                if(!validateQuestion()) System.out.println("Please fill in fields 1 - 4: ");
+                if(!validateQuestion()){
+                    view();
+                }
                 else{
                     try{
                         confirmQuestion();
+                        title = "";
+                        answer = "";
+                        wrongAnswers.clear();
+                        questionCategory = null;
                         App.mainMenu();
                     } catch (EmptyCategoryListException | EmptyOptionsMapException e) {
                         System.out.println(e.getMessage());

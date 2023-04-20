@@ -37,7 +37,10 @@ public class App
 
         System.out.println("#########################");
         System.out.println("1. Create Category");
-        System.out.println("2. Create Question");
+        if(QuestionSystem.getCategories().size() > 0)
+            System.out.println("2. Create Question");
+        else
+            System.out.println("2. --------");
         System.out.println("3. Back to main menu");
         int choice = input.nextInt();
 
@@ -48,7 +51,10 @@ public class App
                 break;
             case 2:
                 // Go to CreateQuestion.java
-                CreateQuestion.view();
+                if(QuestionSystem.getCategories().size() > 0)
+                    CreateQuestion.view();
+                else
+                    createMenu();
                 break;
             case 3:
                 mainMenu();

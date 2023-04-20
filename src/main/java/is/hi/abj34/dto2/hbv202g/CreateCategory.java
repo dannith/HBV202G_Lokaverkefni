@@ -10,16 +10,10 @@ public class CreateCategory {
     public static void view() {
         System.out.println("##############################");
         System.out.println("Categories: ");
-        String line = "";
         List<Category> categories = QuestionSystem.getCategories();
         for(int i = 0; i < categories.size(); i++){
-            if(line.length() + categories.get(i).getName().length() < 32) line += categories.get(i).getName()+", ";
-            else{
-                System.out.println(line);
-                line = categories.get(i).getName();
-            }
+            System.out.println(categories.get(i).getName());
         }
-        if(line.length() > 0) System.out.println(line);
         System.out.println("1. New Category");
         System.out.println("2. Back to main menu");
 
