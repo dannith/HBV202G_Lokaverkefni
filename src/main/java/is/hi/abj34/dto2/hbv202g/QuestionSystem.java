@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionSystem {
-    private static ArrayList<Category> categories = new ArrayList<>();
-    private static ArrayList<Question> questions = new ArrayList<>();
+    private static ArrayList<Category> categories = new ArrayList<Category>();
+    private static ArrayList<Question> questions = new ArrayList<Question>();
 
     public QuestionSystem() {
         //this.categories = new ArrayList<>();
