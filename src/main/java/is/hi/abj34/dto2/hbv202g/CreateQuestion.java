@@ -49,10 +49,7 @@ public class CreateQuestion {
                 else{
                     try{
                         confirmQuestion();
-                        title = "";
-                        answer = "";
-                        wrongAnswers.clear();
-                        questionCategory = null;
+                        clearAllValues();
                         App.mainMenu();
                     } catch (EmptyCategoryListException | EmptyOptionsMapException e) {
                         System.out.println(e.getMessage());
@@ -62,6 +59,7 @@ public class CreateQuestion {
                 App.createMenu();
                 break;
             case "6":
+                clearAllValues();
                 App.mainMenu();
                 break;
             default:
@@ -121,5 +119,12 @@ public class CreateQuestion {
         if(choice < 1 || choice > categories.size()) return;
         Category category = categories.get(choice - 1);
         questionCategory = category;
+    }
+
+    private static void clearAllValues() {
+        title = "";
+        answer = "";
+        wrongAnswers.clear();
+        questionCategory = null;
     }
 }

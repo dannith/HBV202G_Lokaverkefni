@@ -15,7 +15,7 @@ public class Quiz {
 
         System.out.println(breaker);
         for(int i = 0; i < questions.size(); i++) {
-            System.out.println(i + ". " + questions.get(i).getTitle());
+            System.out.println("Question " + (i+1) + ". " + questions.get(i).getTitle());
             int correctAnswer = 0;
             int questionNumber = 1;
             for (String key : questions.get(i).getOptions().keySet()) {
@@ -23,6 +23,7 @@ public class Quiz {
                     correctAnswer = questionNumber;
                 }
                 System.out.println(questionNumber + ". " + key);
+                questionNumber++;
             }
             int choice = input.nextInt();
             String attempt = getRightAnswers(correctAnswer, choice);
@@ -32,6 +33,7 @@ public class Quiz {
         System.out.println(breaker);
         System.out.println("Your score is " + rightAnswers + " out of " + questions.size());
         System.out.println("Returning to main menu");
+        clearAllValues();
         App.mainMenu();
     }
 
@@ -41,6 +43,10 @@ public class Quiz {
             return "Correct!";
         }
         return "Wrong!";
+    }
+
+    private static void clearAllValues() {
+        rightAnswers = 0;
     }
     
 }

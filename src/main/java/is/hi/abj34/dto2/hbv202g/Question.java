@@ -31,4 +31,8 @@ public class Question {
     public Category getCategory() {
         return category;
     }
+
+    public String getStringedCategory() {
+        return category.getName();
+    }
 }

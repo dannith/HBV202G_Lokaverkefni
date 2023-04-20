@@ -2,6 +2,7 @@ package is.hi.abj34.dto2.hbv202g;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class QuestionSystem {
     private static ArrayList<Category> categories = new ArrayList<Category>();
@@ -28,6 +29,10 @@ public class QuestionSystem {
 
     public static void addQuestion(Question question) {
         questions.add(question);
+    }
+
+    public static List<Question> getQuestions(){
+        return new ArrayList<Question>(questions);
     }
 
     // Add Question and options
