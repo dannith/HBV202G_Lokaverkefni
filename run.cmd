@@ -1,1 +1,1 @@
-java -cp bin main.java.is.hi.abj34.dto2.hbv202g.App
+java -cp bin is.hi.abj34.dto2.hbv202g.App

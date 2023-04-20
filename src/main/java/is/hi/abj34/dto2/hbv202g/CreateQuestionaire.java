@@ -12,13 +12,12 @@ public class CreateQuestionaire {
     private static String chosenCategory;
 
     private static List<Category> categories = QuestionSystem.getCategories();
-    //List<Question> questions = QuestionSystem.getQuestions();
-    private static List<Question> questions = new ArrayList<Question>();
+    private static List<Question> questions = QuestionSystem.getQuestions();
     
     public static void view() {
         System.out.println(breaker);
-        System.out.println("1. How many questions will be asked?" + questionsToAnswer);
-        System.out.println("2. Questions category?" + chosenCategory);
+        System.out.println("1. How many questions will be asked? - " + questionsToAnswer);
+        System.out.println("2. Questions category? " + chosenCategory);
         System.out.println("3. Take quiz!");
         System.out.println("4. Back to main menu");
 

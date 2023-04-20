@@ -59,6 +59,7 @@ public class CreateQuestion {
                         view();
                     }
                 }
+                App.createMenu();
                 break;
             case "6":
                 App.mainMenu();

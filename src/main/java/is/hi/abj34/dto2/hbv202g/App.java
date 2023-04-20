@@ -22,8 +22,7 @@ public class App
                 createMenu();
                 break;
             case 2:
-                // Go to CreateQuestionaire.java
-               // CreateQuestionaire.setup();
+               CreateQuestionaire.view();
                 break;
             default:
                 System.out.println("Invalid choice");
@@ -31,7 +30,7 @@ public class App
             }
     }
 
-    private static void createMenu() {
+    public static void createMenu() {
 
         Scanner input = new Scanner(System.in);
 
