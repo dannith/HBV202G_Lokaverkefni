@@ -1,6 +1,5 @@
 package is.hi.abj34.dto2.hbv202g;
 
-import java.awt.desktop.SystemEventListener;
 import java.util.*;
 
 public class CreateQuestion {
@@ -51,7 +50,7 @@ public class CreateQuestion {
                         confirmQuestion();
                         clearAllValues();
                         App.mainMenu();
-                    } catch (EmptyCategoryListException | EmptyOptionsMapException e) {
+                    } catch (NoCategoryException | EmptyOptionsMapException e) {
                         System.out.println(e.getMessage());
                         view();
                     }
@@ -68,7 +67,7 @@ public class CreateQuestion {
         }
     }
 
-    private static void confirmQuestion() throws EmptyCategoryListException, EmptyOptionsMapException {
+    private static void confirmQuestion() throws NoCategoryException, EmptyOptionsMapException {
         Map<String, Boolean> questionChoices = new HashMap<>();
         questionChoices.put(answer, true);
         for(String wrong : wrongAnswers) questionChoices.put(wrong, false);

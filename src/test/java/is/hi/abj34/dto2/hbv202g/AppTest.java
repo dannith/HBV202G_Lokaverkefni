@@ -1,38 +1,82 @@
 package is.hi.abj34.dto2.hbv202g;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.junit.Assert.*;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
+public class AppTest
 {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
+    private String title;
+
+    private String categoryName;
+    private Category category;
+    private Map<String, Boolean> options;
+
+    private Question question;
+
+    @Before
+    public void initOptions(){
+        options = new HashMap<>();
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
+    @Test(expected = EmptyOptionsMapException.class)
+    public void testNoOptionsQuestion() throws EmptyStringException, NoCategoryException, EmptyOptionsMapException {
+        title = "Hvað heitir þú?";
+        category = new Category("Nöfn");
+        question = new Question(title, options, category);
     }
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    @Test(expected = EmptyOptionsMapException.class)
+    public void testOneOptionQuestion() throws EmptyStringException, NoCategoryException, EmptyOptionsMapException {
+        title = "Hvað heitir þú?";
+        category = new Category("Nöfn");
+        options.put("Rétt Svar", true);
+        question = new Question(title, options, category);
+    }
+
+    @Test(expected = NoCategoryException.class)
+    public void testNoCategoryQuestion() throws NoCategoryException, EmptyOptionsMapException {
+        title = "Hvað heitir þú?";
+        options.put("Rétt Svar", true);
+        options.put("Rangt Svar", true);
+        category = null;
+        question = new Question(title, options, category);
+    }
+
+    @Test
+    public void testCategoryQuestionCountIncrease() throws EmptyStringException, NoCategoryException, EmptyOptionsMapException {
+        title = "Hvað heitir þú?";
+        category = new Category("Nöfn");
+        options.put("Rétt Svar", true);
+        options.put("Rangt Svar", true);
+        int questionCountBefore = category.getQuestionsCount();
+
+        question = new Question(title, options, category);
+        assertNotEquals(questionCountBefore, category.getQuestionsCount());
+    }
+
+    @Test(expected = EmptyStringException.class)
+    public void testEmptyNameCategory() throws EmptyStringException {
+        categoryName = "";
+        category = new Category(categoryName);
+    }
+
+    @Test(expected = EmptyStringException.class)
+    public void testWhitespaceNameCategory() throws EmptyStringException {
+        categoryName = "     ";
+        category = new Category(categoryName);
+    }
+
+    @Test(expected = EmptyStringException.class)
+    public void testNullNameCategory() throws EmptyStringException {
+        categoryName = null;
+        category = new Category(categoryName);
     }
 }

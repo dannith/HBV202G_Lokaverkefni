@@ -9,11 +9,11 @@ public class Question {
 
     Category category;
 
-    public Question(String title, Map<String,Boolean> options, Category category) throws EmptyOptionsMapException, EmptyCategoryListException {
+    public Question(String title, Map<String,Boolean> options, Category category) throws EmptyOptionsMapException, NoCategoryException {
         this.title = title;
         if(options.size() < 2) throw new EmptyOptionsMapException("Question needs to have at least two options");
         this.options = options;
-        if(category == null) throw new EmptyCategoryListException("Question needs to be in a category");
+        if(category == null) throw new NoCategoryException("Question needs to be in a category");
         this.category = category;
         category.updateQuestionCount();
     }
