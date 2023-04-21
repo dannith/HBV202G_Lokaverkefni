@@ -19,7 +19,7 @@ public class Quiz {
             int correctAnswer = 0;
             int questionNumber = 1;
             for (String key : questions.get(i).getOptions().keySet()) {
-                if(questions.get(i).getOptions().get(key) == true) {
+                if(Boolean.TRUE.equals(questions.get(i).getOptions().get(key))) {
                     correctAnswer = questionNumber;
                 }
                 System.out.println(questionNumber + ". " + key);
@@ -37,7 +37,7 @@ public class Quiz {
         App.mainMenu();
     }
 
-    public static String getRightAnswers(int correct, int choice) {
+    private static String getRightAnswers(int correct, int choice) {
         if (correct == choice) {
             rightAnswers++;
             return "Correct!";

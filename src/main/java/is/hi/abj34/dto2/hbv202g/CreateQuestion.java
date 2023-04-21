@@ -7,10 +7,10 @@ public class CreateQuestion {
 
     private static String breaker = "##############################";
 
-    static String title = "";
-    static String answer = "";
-    static ArrayList<String> wrongAnswers = new ArrayList<String>();
-    static Category questionCategory;
+    private static String title = "";
+    private static String answer = "";
+    private static ArrayList<String> wrongAnswers = new ArrayList<String>();
+    private static Category questionCategory;
 
     public static void view() {
         System.out.println(breaker);

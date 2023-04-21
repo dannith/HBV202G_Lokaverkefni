@@ -1,7 +1,5 @@
 package is.hi.abj34.dto2.hbv202g;
 
-import java.lang.reflect.Array;
-import java.util.List;
 import java.util.Map;
 
 public class Question {
